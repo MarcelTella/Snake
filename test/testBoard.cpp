@@ -47,3 +47,14 @@ TEST_CASE( "Bigger Dimensions Board", "More realistic case size 10 - Choosing di
     shouldBePos = Position(9, 0);
     REQUIRE(newPos == shouldBePos);
 }
+
+TEST_CASE( "Next position is food", "Next position is food" ){
+    Board b(10, 10);
+    Position food = b.getFood();
+
+    Position rightToFood = b.getNext(RIGHT, food);
+    REQUIRE(b.isNextFood(rightToFood, LEFT));
+    REQUIRE(!b.isNextFood(rightToFood, RIGHT));
+    REQUIRE(!b.isNextFood(rightToFood, TOP));
+    REQUIRE(!b.isNextFood(rightToFood, BOTTOM));
+}

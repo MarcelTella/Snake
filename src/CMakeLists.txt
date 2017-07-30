@@ -5,6 +5,8 @@ set(SOURCES
     Position.h
     Maths.h
     Maths.cpp
+    Snake.h
+    Snake.cpp
     main.cpp
 )
 add_executable(Main ${SOURCES})

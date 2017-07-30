@@ -8,9 +8,12 @@ set(SOURCES
     ../src/Board.cpp
     ../src/Maths.h
     ../src/Maths.cpp
+    ../src/Snake.cpp
+    ../src/Snake.h
     test.cpp
     testMaths.cpp
     testBoard.cpp
+    testSnake.cpp
     catch.hpp
 )
 

@@ -7,18 +7,19 @@
 using namespace std;
 using namespace Eigen;
 
-//typedef Matrix<bool, Dynamic, Dynamic> MatrixXb;
-
-
 Board::Board(const int& sizeX, const int& sizeY)
 {
     _sizeX = sizeX;
     _sizeY = sizeY;
+   generateFood();
 }
 
 void Board::print()
 {
     MatrixXb board(_sizeX, _sizeY);
+
+    board(_food.x, _food.y) = true;
+
     cout << board << endl;
 }
 
@@ -39,7 +40,6 @@ Position Board::getNext(const Direction dir, const Position pos) const {
 }
 
 Position Board::advanceLeft(const Position pos) const {
-
     int newX = modulo(pos.x-1, _sizeX);
     Position newPosition(newX, pos.y);
 
@@ -51,6 +51,15 @@ Position Board::advanceRight(const Position pos) const {
     Position newPosition(newX, pos.y);
 
     return newPosition;
+}
+
+bool Board::isNextFood(const Position& head, const Direction dir) const{
+    Position next = getNext(dir, head);
+
+    if (next == _food){
+        return true;
+    }
+    return false;
 }
 
 Position Board::advanceTop(const Position pos) const {
@@ -65,4 +74,16 @@ Position Board::advanceBottom(const Position pos) const {
     Position newPosition(pos.x, newY);
 
     return newPosition;
+}
+
+Position Board::createFood() const{
+    int x = rand() % _sizeX;
+    int y = rand() % _sizeY;
+
+    // Case snake is over it.
+    return Position(x, y);
+}
+
+void Board::generateFood(){
+    _food = createFood();
 }

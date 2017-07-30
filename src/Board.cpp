@@ -1,11 +1,16 @@
+#include <iostream>
 #include "Board.h"
+using namespace std;
 
-Board::Board()
+Board::Board(int sizeX, int sizeY)
 {
-    int sizeX;
-    int sizeY;
-    
-//    public:
-//        Board();
-    
+    _sizeX = sizeX;
+    _sizeY = sizeY;
+}
+
+
+MatrixXb Board::print()
+{
+    MatrixXb board(_sizeX, _sizeY);
+    cout << board << endl;
 }

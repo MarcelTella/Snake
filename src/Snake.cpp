@@ -17,11 +17,8 @@ void Snake::grow(const Position& food){
     _body.push(food);
 }
 
-
 bool Snake::advance(Board& board, const Direction dir){
-
     Position head = getHeadPosition();
-
     Position next = board.getNext(dir, head);
 
     if (amIDead()){
@@ -40,10 +37,8 @@ bool Snake::advance(Board& board, const Direction dir){
     return true;
 }
 
-
 bool Snake::amIDead(){
     Position head = getHeadPosition();
-
 
     queue<Position> copyQueue = _body;
     int queueLengthNoHead = copyQueue.size()-1;
@@ -60,4 +55,3 @@ bool Snake::amIDead(){
 Position& Snake::getHeadPosition(){
     return _body.back();
 }
-

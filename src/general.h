@@ -2,13 +2,19 @@
 #define GENERAL_H
 
 #include <Eigen/Dense>
+#include "Board.h"
 
 typedef Eigen::Matrix<bool, Eigen::Dynamic, Eigen::Dynamic> MatrixXb;
 enum Direction{LEFT, RIGHT, TOP, BOTTOM};
 const int KEYSTROKE_QUIT = 113;
-const int KEYSTROKE_UP = 65;
-const int KEYSTROKE_DOWN = 66;
-const int KEYSTROKE_RIGHT = 67;
-const int KEYSTROKE_LEFT = 68;
+const char KEYSTROKE_UP = 'w';
+const char KEYSTROKE_DOWN = 's';
+const char KEYSTROKE_RIGHT = 'd';
+const char KEYSTROKE_LEFT = 'a';
+
+void showInstructions();
+float levelSelection();
+bool isAnyPossibleLevel(const int level);
+bool processKeystroke(Board&);
 
 #endif

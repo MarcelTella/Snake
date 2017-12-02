@@ -9,6 +9,7 @@ set(SOURCES
     Snake.h
     Snake.cpp
     general.h
+    general.cpp
     main.cpp
 )
 

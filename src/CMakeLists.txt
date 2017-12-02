@@ -1,15 +1,16 @@
 set(EXECUTABLE_OUTPUT_PATH "bin")
 
 set(SOURCES
-    main.cpp
+    Board.h
+    Board.cpp
     Position.h
     Maths.h
     Maths.cpp
     Snake.h
     Snake.cpp
-    Board.h
-    Board.cpp
+    general.h
+    main.cpp
 )
 
 add_executable(Main ${SOURCES})
-target_link_libraries(Main ${OpenCV_LIBS})
+target_link_libraries(Main ${OpenCV_LIBS} ${CURSES_LIBRARIES})

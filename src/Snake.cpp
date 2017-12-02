@@ -2,39 +2,34 @@
 #include "Snake.h"
 #include "Position.h"
 #include "Board.h"
+#include "general.h"
 
 using namespace std;
 
 Snake::Snake()
 {
     _body.push(Position(3, 3));
-    _body.push(Position(3, 4));
-    _body.push(Position(3, 5));
+    _body.push(Position(4, 3));
+    _body.push(Position(5, 3));
 }
-
 
 void Snake::grow(const Position& food){
     _body.push(food);
 }
 
-bool Snake::advance(Board& board, const Direction dir){
-    Position head = getHeadPosition();
-    Position next = board.getNext(dir, head);
-
-    if (amIDead()){
-        return false;
+bool Snake::overFood(const Position foodPosition) const{
+    queue<Position> snakePositions = getPositions();
+    for (int i=0; snakePositions.size(); i++){
+        Position thisPosition = snakePositions.front();
+        if (thisPosition == foodPosition) return true;
+        snakePositions.pop();
     }
+    return false;
+}
 
-    if (board.isNextFood(head, dir)){
-        grow(next);
-        board.generateFood();
-    }
-    else{
-        _body.push(next);
-        _body.pop();
-    }
-
-    return true;
+void Snake::advance(const Position& next){
+    _body.push(next);
+    _body.pop();
 }
 
 bool Snake::amIDead(){
@@ -52,6 +47,10 @@ bool Snake::amIDead(){
     return false;
 }
 
-Position& Snake::getHeadPosition(){
+Position Snake::getHeadPosition(){
     return _body.back();
+}
+
+queue<Position> Snake::getPositions() const{
+    return _body;
 }

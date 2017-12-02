@@ -13,6 +13,11 @@ find_package( OpenCV REQUIRED )
 message(STATUS "OpenCV:version: ${OpenCV_VERSION}")
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+#NCurses-Keystroke capturing
+find_package(Curses REQUIRED)
+message(STATUS "Curses:version: ${Curses_VERSION}")
+include_directories(${CURSES_INCLUDE_DIR})
+
 add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(libs)

@@ -58,3 +58,4 @@ TEST_CASE( "Next position is food", "Next position is food" ){
     REQUIRE(!b.isNextFood(rightToFood, TOP));
     REQUIRE(!b.isNextFood(rightToFood, BOTTOM));
 }
+

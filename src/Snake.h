@@ -3,7 +3,9 @@
 
 #include <queue>
 #include "Position.h"
-#include "Board.h"
+//#include "Board.h"
+#include "general.h"
+
 using namespace std;
 
 class Snake
@@ -14,11 +16,13 @@ class Snake
     Snake();
 
     void grow(const Position& food);
-    bool advance(Board& b, const Direction dir);
+    bool overFood(const Position foodPosition) const;
     bool amIDead();
+    void advance(const Position& next);
 
-    Position& getHeadPosition();
+    Position getHeadPosition();
     int length() const {return _body.size();}
+    queue<Position> getPositions() const;
 };
 
 #endif // SNAKE_H

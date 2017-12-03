@@ -8,6 +8,7 @@
 #include "general.h"
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <ncurses.h>
 
 using namespace std;
 using namespace Eigen;
@@ -142,7 +143,7 @@ void Board::paintCell(Mat& board, const Position p, const int multiplier, const 
 
 void Board::plot() const{
     Mat image = createBoardImage();
-    imshow("Window HighGui Snake", image);
+    imshow(SNAKE_WINDOW_NAME, image);
 }
 
 void Board::setUserGivenDirection(const Direction& d){
@@ -171,4 +172,14 @@ bool Board::processKeystroke(const int keyPressed){
     }
 
     return EXIT_SUCCESS;
+}
+
+bool Board::iterateAndDraw(){
+    bool gameOn;
+    gameOn = iterate();
+    plot();
+    waitKey(1); // Visualization update
+
+    refresh(); // Keystroke capturing system
+    return gameOn;
 }

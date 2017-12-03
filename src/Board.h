@@ -28,12 +28,13 @@ class Board
     bool isNextFood(const Position& head, const Direction dir) const;
     void print();
     Position getFood() const{ return _food; }
-    void plot() const;
-    bool iterate();
+    bool iterateAndDraw();
     void setUserGivenDirection(const Direction& d);
     bool processKeystroke(const int keyPressed);
 
     private:
+    void plot() const;
+    bool iterate();
     void generateFood();
     Position generateRandomFood() const;
     Position advanceLeft(const Position pos) const;

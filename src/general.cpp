@@ -29,3 +29,12 @@ float levelSelection(){
         cout << endl << "Wrong input.";
     }
 }
+
+void configureKeystrokeCapturing(){
+    initscr();
+    noecho();
+}
+
+void gameOver(){
+    cout << "------------Game Over------------" << endl;
+}

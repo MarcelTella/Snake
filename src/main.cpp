@@ -14,29 +14,24 @@ using namespace Eigen;
 using namespace std;
 
 int main(){
-    Board b(25, 25);
+    Board b(BOARD_SIZE, BOARD_SIZE);
 
     showInstructions();
     float timeoutTime = levelSelection();
 
-    int keyPressed;
-    namedWindow("Window HighGui Snake", 1);
-    initscr();
-    noecho();
+    // Timeout must be done in the main.
+    configureKeystrokeCapturing();
     timeout(timeoutTime);
 
     bool gameOn = true;
+    int keyPressed;
     while(gameOn){
-        b.plot();
-        gameOn = b.iterate();
-        waitKey(1);
-
-        refresh();
+        b.iterateAndDraw();
         keyPressed = getch();
         gameOn = gameOn && !b.processKeystroke(keyPressed);
     }
     endwin();
 
-    cout << "------------Game Over------------" << endl;
+    gameOver();
     return EXIT_SUCCESS;
 }

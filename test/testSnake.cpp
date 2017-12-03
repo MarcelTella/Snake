@@ -44,7 +44,7 @@ TEST_CASE( "Snake dead", "[Snake]" ){
 TEST_CASE( "Snake is over food", "[Snake]" ){
     Snake s;
     {
-    Position food(3, 1);
+    Position food(3, 3);
     REQUIRE(s.overFood(food));
     }
     {

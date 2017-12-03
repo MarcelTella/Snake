@@ -9,8 +9,8 @@ using namespace std;
 Snake::Snake()
 {
     _body.push(Position(3, 3));
-    _body.push(Position(4, 3));
-    _body.push(Position(5, 3));
+    _body.push(Position(3, 4));
+    _body.push(Position(3, 5));
 }
 
 void Snake::grow(const Position& food){

@@ -17,7 +17,7 @@ cmake ..
 make -j
 ```
 # Dependences
-OpenCV
+OpenCV (To create a very naive User Interface using images)
 ```
 sudo apt-get install libopencv-dev
 ```

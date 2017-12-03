@@ -7,6 +7,7 @@
 #include "general.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include <queue>
 
 using namespace Eigen;
 using namespace cv;
@@ -24,29 +25,31 @@ class Board
 
     public:
     Board(const int& sizeX, const int& sizeY);
-    Position getNext(const Direction dir, const Position pos) const;
-    bool isNextFood(const Position& head, const Direction dir) const;
-    void print();
+
+    // Getters
+    int getSizeX() const;
+    int getSizeY() const;
     Position getFood() const{ return _food; }
+    queue<Position> getSnakePositions() const;
+
+    Position getNext(const Direction dir, const Position& pos) const;
+    bool isNextFood(const Position& head, const Direction dir) const;
+
     bool iterateAndDraw();
     void setUserGivenDirection(const Direction& d);
     bool processKeystroke(const int keyPressed);
 
+
     private:
-    void plot() const;
-    bool iterate();
     void generateFood();
+    Position createFood() const;
     Position generateRandomFood() const;
+
+    bool iterate();
     Position advanceLeft(const Position pos) const;
     Position advanceRight(const Position pos) const;
     Position advanceTop(const Position pos) const;
     Position advanceBottom(const Position pos) const;
-    Position createFood() const;
-
-    Mat createBoardImage(const int multiplier=8) const;
-    void paintCell(Mat& board, const Position p, const int multiplier, const int value) const;
-
-
 };
 
 #endif // BOARD_H

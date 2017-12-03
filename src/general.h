@@ -10,6 +10,7 @@ typedef Eigen::Matrix<bool, Eigen::Dynamic, Eigen::Dynamic> MatrixXb;
 enum Direction{LEFT, RIGHT, TOP, BOTTOM};
 
 const int BOARD_SIZE = 25;
+const float DEFAULT_SPEED_FIRST_LEVEL = 200; // ms per time unit
 
 const int KEYSTROKE_QUIT = 113;
 const char KEYSTROKE_UP = 'w';

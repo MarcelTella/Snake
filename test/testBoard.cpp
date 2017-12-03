@@ -1,6 +1,7 @@
 #include "catch.hpp"
 #include "Position.h"
 #include "Board.h"
+#include "DrawingHelper.h"
 
 TEST_CASE( "Board", "Choosing direction 1" ){
     Position pos(0, 0);
@@ -58,4 +59,3 @@ TEST_CASE( "Next position is food", "Next position is food" ){
     REQUIRE(!b.isNextFood(rightToFood, TOP));
     REQUIRE(!b.isNextFood(rightToFood, BOTTOM));
 }
-

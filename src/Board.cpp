@@ -9,13 +9,14 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <ncurses.h>
+#include <queue>
+#include "DrawingHelper.h"
 
 using namespace std;
 using namespace Eigen;
 using namespace cv;
 
-Board::Board(const int& sizeX, const int& sizeY)
-{
+Board::Board(const int& sizeX, const int& sizeY){
     _sizeX = sizeX;
     _sizeY = sizeY;
     generateFood();
@@ -23,14 +24,7 @@ Board::Board(const int& sizeX, const int& sizeY)
     _dir = TOP;
 }
 
-void Board::print()
-{
-    MatrixXb board(_sizeX, _sizeY);
-    board(_food.x, _food.y) = true;
-    cout << board << endl;
-}
-
-Position Board::getNext(const Direction dir, const Position pos) const {
+Position Board::getNext(const Direction dir, const Position& pos) const {
     Position newPos;
     switch (dir) {
         case LEFT: newPos = advanceLeft(pos);
@@ -48,11 +42,7 @@ Position Board::getNext(const Direction dir, const Position pos) const {
 
 bool Board::isNextFood(const Position& head, const Direction dir) const{
     Position next = getNext(dir, head);
-
-    if (next == _food){
-        return true;
-    }
-    return false;
+    return (next == _food);
 }
 
 Position Board::advanceLeft(const Position pos) const {
@@ -116,36 +106,6 @@ void Board::generateFood(){
     _food = createFood();
 }
 
-Mat Board::createBoardImage(const int multiplier) const{
-    Mat boardImage = Mat::zeros(multiplier*_sizeX, multiplier*_sizeY, CV_8UC1);
-
-    Position food = getFood();
-    paintCell(boardImage, food, multiplier, FOOD_LEVEL);
-
-    queue<Position> snakePositions = _s.getPositions();
-    for (int i=0; snakePositions.size(); i++){
-        Position thisPosition = snakePositions.front();
-        paintCell(boardImage, thisPosition, multiplier, SNAKE_LEVEL);
-        snakePositions.pop();
-    }
-
-    return boardImage;
-}
-
-void Board::paintCell(Mat& board, const Position p, const int multiplier, const int value) const{
-    for (int i=0; i<multiplier; i++){
-        for (int j=0; j<multiplier; j++){
-            // Note that the board goes by rows=y, cols=x.
-            board.at<uchar>((p.y*multiplier)+j, (p.x*multiplier)+i) = value;
-        }
-    }
-}
-
-void Board::plot() const{
-    Mat image = createBoardImage();
-    imshow(SNAKE_WINDOW_NAME, image);
-}
-
 void Board::setUserGivenDirection(const Direction& d){
     if (!(d == TOP && _dir == BOTTOM) &&
         !(d == BOTTOM && _dir == TOP) &&
@@ -177,9 +137,21 @@ bool Board::processKeystroke(const int keyPressed){
 bool Board::iterateAndDraw(){
     bool gameOn;
     gameOn = iterate();
-    plot();
+    DrawingHelper::plot(*this);
     waitKey(1); // Visualization update
 
     refresh(); // Keystroke capturing system
     return gameOn;
+}
+
+queue<Position> Board::getSnakePositions() const{
+    return _s.getPositions();
+}
+
+int Board::getSizeX() const{
+    return _sizeX;
+}
+
+int Board::getSizeY() const{
+    return _sizeY;
 }

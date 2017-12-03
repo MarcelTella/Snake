@@ -10,12 +10,14 @@ set(SOURCES
     ../src/Maths.cpp
     ../src/Snake.cpp
     ../src/Snake.h
-    test.cpp
+    ../src/DrawingHelper.h
+    ../src/DrawingHelper.cpp
     testMaths.cpp
     testBoard.cpp
     testSnake.cpp
+    test.cpp
     catch.hpp
 )
 
-#add_executable(Tests ${SOURCES})
-#target_link_libraries(Tests ${OpenCV_LIBS})
+add_executable(Tests ${SOURCES})
+target_link_libraries(Tests ${OpenCV_LIBS} ${CURSES_LIBRARIES})

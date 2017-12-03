@@ -16,17 +16,17 @@ bool isAnyPossibleLevel(const int level){
 
 float levelSelection(){
     cout << "Choose the difficulty level 1, 2, 3 or 4: ";
-    float defaultSpeedFirstLevel = 200; // ms per time unit
+
     while(true){
         int level;
         cin >> level;
 
         if (isAnyPossibleLevel(level)){
-            return defaultSpeedFirstLevel/level;
+            return DEFAULT_SPEED_FIRST_LEVEL / level;
             break;
         }
 
-        cout << endl << "Wrong input.";
+        cout << endl << "Wrong input." << endl;
     }
 }
 

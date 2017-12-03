@@ -10,6 +10,8 @@ set(SOURCES
     Snake.cpp
     general.h
     general.cpp
+    DrawingHelper.cpp
+    DrawingHelper.h
     main.cpp
 )
 

@@ -19,7 +19,7 @@ int main(){
     showInstructions();
     float timeoutTime = levelSelection();
 
-    int c;
+    int keyPressed;
     namedWindow("Window HighGui Snake", 1);
     initscr();
     noecho();
@@ -32,8 +32,8 @@ int main(){
         waitKey(1);
 
         refresh();
-        c = getch();
-        gameOn = gameOn && !processKeystroke(b);
+        keyPressed = getch();
+        gameOn = gameOn && !b.processKeystroke(keyPressed);
     }
     endwin();
 

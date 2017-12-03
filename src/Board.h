@@ -31,6 +31,7 @@ class Board
     void plot() const;
     bool iterate();
     void setUserGivenDirection(const Direction& d);
+    bool processKeystroke(const int keyPressed);
 
     private:
     void generateFood();
@@ -43,6 +44,8 @@ class Board
 
     Mat createBoardImage(const int multiplier=8) const;
     void paintCell(Mat& board, const Position p, const int multiplier, const int value) const;
+
+
 };
 
 #endif // BOARD_H

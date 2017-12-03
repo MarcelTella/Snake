@@ -152,3 +152,23 @@ void Board::setUserGivenDirection(const Direction& d){
         !(d == RIGHT && _dir == LEFT))
         _dir = d;
 }
+
+bool Board::processKeystroke(const int keyPressed){
+    if (keyPressed == KEYSTROKE_QUIT){
+        return EXIT_FAILURE;
+    }
+    else if (keyPressed == KEYSTROKE_UP ){
+        setUserGivenDirection(TOP);
+    }
+    else if (keyPressed == KEYSTROKE_DOWN){
+        setUserGivenDirection(BOTTOM);
+    }
+    else if (keyPressed == KEYSTROKE_LEFT){
+        setUserGivenDirection(LEFT);
+    }
+    else if (keyPressed == KEYSTROKE_RIGHT){
+        setUserGivenDirection(RIGHT);
+    }
+
+    return EXIT_SUCCESS;
+}

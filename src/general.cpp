@@ -4,6 +4,7 @@
 #include "Board.h"
 
 using namespace std;
+
 void showInstructions(){
     cout << "Instructions: Right(a), Left(d), Up(w), Down(s). Press q to exit." << endl;
     cout << "Note: Click in the terminal to take control of the snake." << endl;
@@ -27,24 +28,4 @@ float levelSelection(){
 
         cout << endl << "Wrong input.";
     }
-}
-
-bool processKeystroke(Board& b){
-    if (c == KEYSTROKE_QUIT){
-        return EXIT_FAILURE;
-    }
-    else if (c == KEYSTROKE_UP ){
-        b.setUserGivenDirection(TOP);
-    }
-    else if (c == KEYSTROKE_DOWN){
-        b.setUserGivenDirection(BOTTOM);
-    }
-    else if (c == KEYSTROKE_LEFT){
-        b.setUserGivenDirection(LEFT);
-    }
-    else if (c == KEYSTROKE_RIGHT){
-        b.setUserGivenDirection(RIGHT);
-    }
-
-    return EXIT_SUCCESS;
 }

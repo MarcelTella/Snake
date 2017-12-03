@@ -2,7 +2,6 @@
 #define GENERAL_H
 
 #include <Eigen/Dense>
-#include "Board.h"
 
 typedef Eigen::Matrix<bool, Eigen::Dynamic, Eigen::Dynamic> MatrixXb;
 enum Direction{LEFT, RIGHT, TOP, BOTTOM};
@@ -15,6 +14,5 @@ const char KEYSTROKE_LEFT = 'a';
 void showInstructions();
 float levelSelection();
 bool isAnyPossibleLevel(const int level);
-bool processKeystroke(Board&);
 
 #endif

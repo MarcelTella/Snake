@@ -17,5 +17,5 @@ set(SOURCES
     catch.hpp
 )
 
-add_executable(Tests ${SOURCES})
-target_link_libraries(Tests ${OpenCV_LIBS})
+#add_executable(Tests ${SOURCES})
+#target_link_libraries(Tests ${OpenCV_LIBS})

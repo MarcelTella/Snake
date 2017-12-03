@@ -16,6 +16,12 @@ cd Snake-build/
 cmake ..
 make -j
 ```
+# Dependences
+OpenCV
+sudo apt-get install libopencv-dev
+
+NCurses (Keystroke detection)
+sudo apt-get install libncurses5-dev libncursesw5-dev
 
 # Running it
 Just run

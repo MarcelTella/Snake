@@ -7,6 +7,7 @@ This is an implementation of the Snake game as in the classic Nokia 3310.
 Marcel Tella-Amo
 
 # Compiling it
+Tested in Ubuntu 16.04
 ```
 git clone git@github.com:MarcelTella/Snake.git
 cd Snake/
